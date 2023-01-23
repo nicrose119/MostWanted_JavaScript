@@ -13,7 +13,7 @@
  * This is the main logic function being called in index.html.
  * It operates as the entry point for our entire application and allows
  * our user to decide whether to search by name or by traits.
- * @param {Array} people        A collection of person objects.
+ * @param {Array} people        A collection of person objects. 
  */
 function app(people) {
     // promptFor() is a custom function defined below that helps us prompt and validate input more easily
@@ -49,7 +49,7 @@ function app(people) {
  * descendants and other information that the user may want.
  * @param {Object[]} person     A singular object inside of an array.
  * @param {Array} people        A collection of person objects.
- * @returns {String}            The valid string input retrieved from the user.
+ * @returns {String}            The valid string input retrieved from the user. 
  */
 function mainMenu(person, people) {
     // A check to verify a person was found via searchByName() or searchByTrait()
