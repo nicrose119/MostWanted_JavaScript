@@ -72,7 +72,7 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people);
+            let personFamily = findPersonFamily(person[0], people); 
             alert(personFamily);
             break;
         case "descendants":
@@ -114,6 +114,13 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
+function searchByTraits(people) {
+    let unknown = promptFor('Please type in search area, value', chars);
+    let foundTrait = people.filter(function(person){
+        if (person.unknown === `Gender:`)
+        return true
+    }) 
+}
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
