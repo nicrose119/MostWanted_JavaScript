@@ -73,6 +73,15 @@ function mainMenu(person, people) {
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
+        function findPersonFamily(people) {
+            alert(
+                people.currentSpouse
+                    .map(function (person) {
+                            return `${person.firstName} ${person.lastName}` ;
+                        })
+                        .join("\n")
+                );
+            }
             alert(personFamily);
             break;
         case "descendants":
