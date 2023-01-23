@@ -117,7 +117,7 @@ function searchByName(people) {
 function searchByTraits(people) {
     let unknown = promptFor('Please type in search area, value', chars);
     let foundTrait = people.filter(function(person){
-        if (person.unknown === `Gender:`)
+        if (person[unknown] === `Gender:`)
         return true
     }) 
 }
