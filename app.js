@@ -114,8 +114,6 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
-function searchByTraits(people) 
-
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
