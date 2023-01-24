@@ -114,13 +114,8 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
-function searchByTraits(people) {
-    let unknown = promptFor('Please type in search area, value', chars);
-    let foundTrait = people.filter(function(person){
-        if (person.unknown === `Gender:`)
-        return true
-    }) 
-}
+function searchByTraits(people) 
+
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
