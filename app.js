@@ -114,13 +114,18 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
-function searchByTraits(people) {
-    let unknown = promptFor('Please type in search area, value', chars);
-    let foundTrait = people.filter(function(person){
-        if (person[unknown] === `Gender:`)
-        return true
-    }) 
-}
+// function searchByTraits(people) {
+//     let trait = promptFor('Please type in search area, value', chars);
+//     let foundPeople = people.filter(function(person){
+//         if (person[trait] === trait)
+//         return true
+//         else{
+//             return false
+//         }
+//     }) 
+//     alert(foundPeople)
+//     return true
+// }
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -199,3 +204,16 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function currentSpouse(){
+    let spouse = people.filter(function(person){
+    if (person.currentSpouse === person.id){
+        return true
+    }
+    else{
+        return false
+    }})
+    alert(spouse)
+    return spouse
+}
+
