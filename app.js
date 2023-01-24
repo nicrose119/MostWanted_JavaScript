@@ -114,6 +114,43 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
+<<<<<<< HEAD
+=======
+// function searchByTraits(people) {
+//     let trait = promptFor('Please type in search area the value you are searching ', chars);
+//     let foundPeople = people.filter(function(person){
+//         if (person[trait] === trait)
+//         return true
+//         else{
+//             return false
+//         }
+//     }) 
+//     alert(foundPeople)
+//     return true
+// }
+// function displayPersonTraits(person){
+//     let personTrait = `Gender: ${person.gender}\n`;
+//     personTrait += `DOB: ${person.dob}\n`;
+//     personTrait += `Height: ${person.height}\n` ;
+//     personTrait += `Weight: ${person.weight}\n` ;
+//     personTrait += `EyeColor: ${person.eyeColor}\n` ;
+//     personTrait += `Occupation: ${person.occupation}\n` ;
+// }
+
+function searchByTraits(people){
+    let personTrait = promptFor("What are you searching for", chars);
+    let foundPerson = people.filter(function (person) {
+        if (personTrait === person.gender){
+            return true;
+        }
+        else{
+            return false
+    }})
+    return foundPerson
+}
+let byTrait = people.filter(searchByTraits);
+console.log(byTrait);
+>>>>>>> 9546c3c0c8c05ea54f19526f206ae7d46542b1e6
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
