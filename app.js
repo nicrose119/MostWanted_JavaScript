@@ -31,7 +31,7 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByGender(people);
+            searchResults = searchByTraits(people);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -114,33 +114,6 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
-
-// function searchByTraits(people) {
-//     let trait = promptFor('Please type in search area the value you are searching ', chars);
-//     let foundPeople = people.filter(function(person){
-//         if (person[trait] === trait)
-//         return true
-//         else{
-//             return false
-//         }
-//     }) 
-//     alert(foundPeople)
-//     return true
-// }
-
-function searchByTraits(people){
-    let personTrait = promptFor("What are you searching for", chars);
-    let foundPerson = people.filter(function (person) {
-        if (personTrait === person.gender){
-            return true;
-        }
-        else{
-            return false
-    }})
-    return foundPerson
-}
-let byTrait = person.filter(searchByTraits);
-console.log(byTrait);
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -234,18 +207,6 @@ let personTemplate =
     "currentSpouse": 0,
 };
 
-
-
-function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
-    let spouse = people.find(function(person){
-    if (poi.currentSpouse === person.id)
-        return true;
-    });
-    alert(`Person of Interest ${poi.firstName} ${poi.lastName}
-    Current Spouse: ${spouse.firstName} ${spouse.lastName}`)
-}
-
-=======
 function findCurrentSpouse(poi = personTemplate[0], people = []) {
     let spouse = people.find(function (person) {
         if (poi.currentSpouse === person.id) return true;
@@ -269,15 +230,109 @@ function findCurrentSpouse(poi = personTemplate[0], people = []) {
 //     Current Spouse: ${spouse.firstName} ${spouse.lastName}
 //     Parents: ${parent.firstName} ${parent.lastName}`);
 // };
+function searchByTraits(people = []) {
+    let resultTraits = people;
+    do{
+        let searchTraits = promptFor("Please enter the traits you would like to search for gender/dob/height/weight/eyecolor/occupation ", chars).toLowerCase
+        switch(searchTraits){
+            case 'gender':
+                resultTraits = searchByGender(resultTraits);
+                displayPeople(resultTraits);
+            break;
+            case 'dob':
+                resultTraits = searchByDOB(resultTraits);
+                displayPeople(resultTraits);
+            break;
+            case 'height':
+                resultTraits = searchByHeight(resultTraits);
+                displayPeople(resultTraits);
+            break;
+            case 'weight':
+                resultTraits = searchByWeight(resultTraits);
+                displayPeople(resultTraits);
+            break;
+            case 'eyeColor':
+                resultTraits = searchByEyeColor(resultTraits);
+                displayPeople(resultTraits);
+            break;
+            case 'occupation':
+                resultTraits = searchByOccupation(resultTraits);
+                displayPeople(resultTraits);
+            break;
+        }
+    }
+    while (resultTraits.length <= 1);
+    return resultTraits
+};
 
-function searchByGender(people = []) {
+function searchByGender(people) {
     let gender = promptFor("Please enter the gender of the person you are searching for ", chars).toLowerCase
     let foundPerson = people.filter(function(person) {
-        if (person.gender === gender){
+        if (person.gender === gender) {
             return true;
     }   else {
             return false;
     }      
+    })
+    return foundPerson;
+};
+
+function searchByDOB (people) {
+    let dob = promptFor("Please enter the date of birth of the person you are searching for mm/dd/yyyy")
+    let foundPerson = people.filter(function(person) {
+        if (person.dob === dob) {
+            return true;
+    }   else {
+            return false;
+    }
+    })
+    return foundPerson;
+};
+
+function searchByHeight (people) {
+    let height = promptFor("Please enter the height (in inches) of the person you are searching for ")
+    let foundPerson = people.filter(function(person) {
+        if (person.height === height) {
+            return true;
+    }   else {
+            return false;
+    }
+    })
+    return foundPerson;
+};
+
+function searchByWeight (people) {
+    let weight = promptFor("Please enter the weight of the person you are searching for ")
+    let foundPerson = people.filter(function(person) {
+        if (person.weight === weight) {
+            return true;
+    }   else {
+            return false;
+    }
+    })
+    return foundPerson;
+};
+
+function searchByEyeColor (people = []) {
+    let eyeColor = promptFor("Please enter the eye color of the person you are searching for ", chars).toLowerCase
+    let foundPerson = people.filter(function(person) {
+        if (person.eyeColor === eyeColor) {
+            return true;
+    }   else {
+            return false;
+    }
+    })
+    return foundPerson;
+};
+
+function searchByOccupation (people = []) {
+    let occupation = promptFor("Please enter the occupation of the person you are searching for ", chars).toLowerCase
+    let foundPerson = people.filter(function(person) {
+        if (person.occupation === occupation) {
+            return true;
+    }   else {
+            return false;
+    }
     })
     return foundPerson;
 };
