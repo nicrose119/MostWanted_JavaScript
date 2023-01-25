@@ -31,7 +31,7 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+            searchResults = searchByGender(people);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -114,43 +114,6 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
-<<<<<<< HEAD
-=======
-// function searchByTraits(people) {
-//     let trait = promptFor('Please type in search area the value you are searching ', chars);
-//     let foundPeople = people.filter(function(person){
-//         if (person[trait] === trait)
-//         return true
-//         else{
-//             return false
-//         }
-//     }) 
-//     alert(foundPeople)
-//     return true
-// }
-// function displayPersonTraits(person){
-//     let personTrait = `Gender: ${person.gender}\n`;
-//     personTrait += `DOB: ${person.dob}\n`;
-//     personTrait += `Height: ${person.height}\n` ;
-//     personTrait += `Weight: ${person.weight}\n` ;
-//     personTrait += `EyeColor: ${person.eyeColor}\n` ;
-//     personTrait += `Occupation: ${person.occupation}\n` ;
-// }
-
-function searchByTraits(people){
-    let personTrait = promptFor("What are you searching for", chars);
-    let foundPerson = people.filter(function (person) {
-        if (personTrait === person.gender){
-            return true;
-        }
-        else{
-            return false
-    }})
-    return foundPerson
-}
-let byTrait = people.filter(searchByTraits);
-console.log(byTrait);
->>>>>>> 9546c3c0c8c05ea54f19526f206ae7d46542b1e6
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -250,4 +213,32 @@ function findCurrentSpouse(poi = personTemplate[0], people = []) {
     });
     alert(`POI ${poi.firstName} ${poi.lastName} 
     Current Spouse: ${spouse.firstName} ${spouse.lastName}`);
+};
+
+// function findParents(poi = personTemplate[0], people = []) {
+//     let parents = people.filter(function (person) {
+//         if (poi.parents === person.id) return true;
+//     });
+//     alert(`POI: ${poi.firstName} ${poi.lastName} 
+//     Parents: ${parents.firstName} ${parents.lastName}`);
+// };
+// function findPersonFamily(poi = personTemplate[0], people = []) {
+//     let personFamily = people.filter(function (person){
+//         if (poi.currentSpouse === person.id || poi.parents === person.id) return true;
+//     });
+//     alert(`POI ${poi.firstName} ${poi.lastName} 
+//     Current Spouse: ${spouse.firstName} ${spouse.lastName}
+//     Parents: ${parent.firstName} ${parent.lastName}`);
+// };
+
+function searchByGender(people = []) {
+    let gender = promptFor("Please enter the gender of the person you are searching for ", chars).toLowerCase
+    let foundPerson = people.filter(function(person) {
+        if (person.gender === gender){
+            return true;
+    }   else {
+            return false;
+    }      
+    })
+    return foundPerson;
 };
