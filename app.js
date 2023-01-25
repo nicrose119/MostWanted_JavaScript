@@ -58,13 +58,13 @@ function mainMenu(person = personTemplate, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    else if (people.length > 1){
-        alert("Please try search again, mulitple results found. ")
-        return app(people)
-    }
-    else{
-        
-    }
+    // else if (people.length > 2){
+    //     alert("Please try narrowing your search, mulitple results found. ")
+    //     return app(people)
+    // }
+    // else (personTemplate = 1 (displayPeople))
+
+
     let displayOption = prompt(
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
@@ -74,12 +74,12 @@ function mainMenu(person = personTemplate, people) {
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
-            // alert(personInfo);
+            alert(personInfo);
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people); 
+            let personFamily = findFamily(person[0], people);
             alert(personFamily);
             break;
         case "descendants":
@@ -223,20 +223,32 @@ function findCurrentSpouse(poi = personTemplate[0], people = []) {
 };
 
 function findParents(poi = personTemplate[0], people = []) {
-    let parents = people.filter(function (person) {
+    let parents;
+    parents = people.filter(function (person) {
         if (poi.parents.includes(person.id)) return true;
     });
-    alert(`POI: ${poi.firstName} ${poi.lastName} 
-    Parents: ${parents.firstName} ${parents.lastName}`);
+    alert();
+    return parents
 };
+
 function findSiblings(poi = personTemplate[0], people = []){
     let sibling = people.filter(function(person){
         if (poi.parents.includes(person.parents)) return true; 
+    else 
+        return false
     });
-    alert(`Here is your sibling ${sibling}`)
+    alert(`Here is your sibling ${sibling.firstName} ${sibling.lastName}`)
 }
 
+// function findFamily(poi = personTemplate[0], people = []){
+//     let familyResults;
+    
+//     familyResults = findSiblings
+//     familyResults = findParents
+//     familyResults = findCurrentSpouse
 
+//     return familyResults
+// }
 
 function searchByTraits(people) {
         let resultTraits;
