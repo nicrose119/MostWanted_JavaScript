@@ -8,20 +8,6 @@
 //? Utilize the hotkey to hide block level comment documentation
 ////* Mac: Press "CMD"+"K" and then "CMD"+"/"
 ////* PC: Press "CTRL"+"K" and then "CTRL"+"/"
-let personTemplate = 
-    {
-		"id": 0,
-		"firstName": "",
-		"lastName": "",
-		"gender": "",
-		"dob": "",
-		"height": 0,
-		"weight": 0,
-		"eyeColor": "",
-		"occupation": "",
-		"parents": [],
-		"currentSpouse": 0
-	};
 
 /**
  * This is the main logic function being called in index.html.
@@ -86,11 +72,7 @@ function mainMenu(person = personTemplate, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-<<<<<<< HEAD
-            let personFamily = findPersonSpouse(person = personTemplate[0], people = []); 
-=======
             let personFamily = findCurrentSpouse(person[0], people); 
->>>>>>> 64fdf4a296abacf5c6a27303726ee802a289239b
             alert(personFamily);
             break;
         case "descendants":
@@ -132,8 +114,7 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
-<<<<<<< HEAD
-=======
+
 // function searchByTraits(people) {
 //     let trait = promptFor('Please type in search area the value you are searching ', chars);
 //     let foundPeople = people.filter(function(person){
@@ -160,7 +141,6 @@ function searchByTraits(people){
 }
 let byTrait = person.filter(searchByTraits);
 console.log(byTrait);
->>>>>>> 9546c3c0c8c05ea54f19526f206ae7d46542b1e6
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -254,7 +234,6 @@ let personTemplate =
     "currentSpouse": 0,
 };
 
-<<<<<<< HEAD
 
 
 function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
@@ -266,12 +245,3 @@ function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
     Current Spouse: ${spouse.firstName} ${spouse.lastName}`)
 }
 
-=======
-function findCurrentSpouse(poi = personTemplate[0], people = []) {
-    let spouse = people.find(function (person) {
-        if (poi.currentSpouse === person.id) return true;
-    });
-    alert(`POI ${poi.firstName} ${poi.lastName} 
-    Current Spouse: ${spouse.firstName} ${spouse.lastName}`);
-};
->>>>>>> 64fdf4a296abacf5c6a27303726ee802a289239b
