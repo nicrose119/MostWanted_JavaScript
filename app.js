@@ -8,6 +8,20 @@
 //? Utilize the hotkey to hide block level comment documentation
 ////* Mac: Press "CMD"+"K" and then "CMD"+"/"
 ////* PC: Press "CTRL"+"K" and then "CTRL"+"/"
+let personTemplate = 
+    {
+		"id": 0,
+		"firstName": "",
+		"lastName": "",
+		"gender": "",
+		"dob": "",
+		"height": 0,
+		"weight": 0,
+		"eyeColor": "",
+		"occupation": "",
+		"parents": [],
+		"currentSpouse": 0
+	};
 
 /**
  * This is the main logic function being called in index.html.
@@ -72,7 +86,7 @@ function mainMenu(person, people) {
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people); 
+            let personFamily = findPersonSpouse(person = personTemplate[0], people = []); 
             alert(personFamily);
             break;
         case "descendants":
@@ -126,14 +140,6 @@ function searchByName(people) {
 //     alert(foundPeople)
 //     return true
 // }
-// function displayPersonTraits(person){
-//     let personTrait = `Gender: ${person.gender}\n`;
-//     personTrait += `DOB: ${person.dob}\n`;
-//     personTrait += `Height: ${person.height}\n` ;
-//     personTrait += `Weight: ${person.weight}\n` ;
-//     personTrait += `EyeColor: ${person.eyeColor}\n` ;
-//     personTrait += `Occupation: ${person.occupation}\n` ;
-// }
 
 function searchByTraits(people){
     let personTrait = promptFor("What are you searching for", chars);
@@ -146,7 +152,7 @@ function searchByTraits(people){
     }})
     return foundPerson
 }
-let byTrait = people.filter(searchByTraits);
+let byTrait = person.filter(searchByTraits);
 console.log(byTrait);
 
 /**
@@ -227,15 +233,14 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-function currentSpouse(){
-    let spouse = people.filter(function(person){
-    if (person.currentSpouse === person.id){
-        return true
-    }
-    else{
-        return false
-    }})
-    alert(spouse)
-    return spouse
+
+
+function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
+    let spouse = people.find(function(person){
+    if (poi.currentSpouse === person.id)
+        return true;
+    });
+    alert(`Person of Interest ${poi.firstName} ${poi.lastName}
+    Current Spouse: ${spouse.firstName} ${spouse.lastName}`)
 }
 
