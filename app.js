@@ -31,7 +31,7 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+            searchResults = searchByGender(people);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -245,3 +245,39 @@ function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
     Current Spouse: ${spouse.firstName} ${spouse.lastName}`)
 }
 
+=======
+function findCurrentSpouse(poi = personTemplate[0], people = []) {
+    let spouse = people.find(function (person) {
+        if (poi.currentSpouse === person.id) return true;
+    });
+    alert(`POI ${poi.firstName} ${poi.lastName} 
+    Current Spouse: ${spouse.firstName} ${spouse.lastName}`);
+};
+
+// function findParents(poi = personTemplate[0], people = []) {
+//     let parents = people.filter(function (person) {
+//         if (poi.parents === person.id) return true;
+//     });
+//     alert(`POI: ${poi.firstName} ${poi.lastName} 
+//     Parents: ${parents.firstName} ${parents.lastName}`);
+// };
+// function findPersonFamily(poi = personTemplate[0], people = []) {
+//     let personFamily = people.filter(function (person){
+//         if (poi.currentSpouse === person.id || poi.parents === person.id) return true;
+//     });
+//     alert(`POI ${poi.firstName} ${poi.lastName} 
+//     Current Spouse: ${spouse.firstName} ${spouse.lastName}
+//     Parents: ${parent.firstName} ${parent.lastName}`);
+// };
+
+function searchByGender(people = []) {
+    let gender = promptFor("Please enter the gender of the person you are searching for ", chars).toLowerCase
+    let foundPerson = people.filter(function(person) {
+        if (person.gender === gender){
+            return true;
+    }   else {
+            return false;
+    }      
+    })
+    return foundPerson;
+};
