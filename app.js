@@ -61,11 +61,11 @@ function app(people) {
  * After finding a single person, we pass in the entire person-object that we found,
  * as well as the entire original dataset of people. We need people in order to find
  * descendants and other information that the user may want.
- * @param {Object[]} person     A singular object inside of an array.
+ * @param {Object[]} person   A singular object inside of an array.
  * @param {Array} people        A collection of person objects.
  * @returns {String}            The valid string input retrieved from the user. 
  */
-function mainMenu(person, people) {
+function mainMenu(person = personTemplate, people) {
     // A check to verify a person was found via searchByName() or searchByTrait()
     if (!person[0]) {
         alert("Could not find that individual.");
@@ -81,12 +81,16 @@ function mainMenu(person, people) {
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
-            alert(personInfo);
+            // alert(personInfo);
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
+<<<<<<< HEAD
             let personFamily = findPersonSpouse(person = personTemplate[0], people = []); 
+=======
+            let personFamily = findCurrentSpouse(person[0], people); 
+>>>>>>> 64fdf4a296abacf5c6a27303726ee802a289239b
             alert(personFamily);
             break;
         case "descendants":
@@ -128,6 +132,8 @@ function searchByName(people) {
     return foundPerson;
 }
 // End of searchByName()
+<<<<<<< HEAD
+=======
 // function searchByTraits(people) {
 //     let trait = promptFor('Please type in search area the value you are searching ', chars);
 //     let foundPeople = people.filter(function(person){
@@ -154,6 +160,7 @@ function searchByTraits(people){
 }
 let byTrait = person.filter(searchByTraits);
 console.log(byTrait);
+>>>>>>> 9546c3c0c8c05ea54f19526f206ae7d46542b1e6
 
 /**
  * This function will be useful for STRINGIFYING a collection of person-objects
@@ -232,7 +239,22 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+let personTemplate = 	
+{
+    "id": 0,
+    "firstName": "",
+    "lastName": "",
+    "gender": "",
+    "dob": "",
+    "height": 0,
+    "weight": 0,
+    "eyeColor": "",
+    "occupation": "",
+    "parents": [],
+    "currentSpouse": 0,
+};
 
+<<<<<<< HEAD
 
 
 function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
@@ -244,3 +266,12 @@ function findPersonSpouse(poi = personTemplate, people = [personTemplate]){
     Current Spouse: ${spouse.firstName} ${spouse.lastName}`)
 }
 
+=======
+function findCurrentSpouse(poi = personTemplate[0], people = []) {
+    let spouse = people.find(function (person) {
+        if (poi.currentSpouse === person.id) return true;
+    });
+    alert(`POI ${poi.firstName} ${poi.lastName} 
+    Current Spouse: ${spouse.firstName} ${spouse.lastName}`);
+};
+>>>>>>> 64fdf4a296abacf5c6a27303726ee802a289239b
