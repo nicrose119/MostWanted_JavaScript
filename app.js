@@ -8,20 +8,6 @@
 //? Utilize the hotkey to hide block level comment documentation
 ////* Mac: Press "CMD"+"K" and then "CMD"+"/"
 ////* PC: Press "CTRL"+"K" and then "CTRL"+"/"
-let personTemplate = 
-    {
-		"id": 0,
-		"firstName": "",
-		"lastName": "",
-		"gender": "",
-		"dob": "",
-		"height": 0,
-		"weight": 0,
-		"eyeColor": "",
-		"occupation": "",
-		"parents": [],
-		"currentSpouse": 0
-	};
 
 /**
  * This is the main logic function being called in index.html.
