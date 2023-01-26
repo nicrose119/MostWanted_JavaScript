@@ -31,7 +31,7 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+            searchResults = searchByTrait(people);
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -56,15 +56,9 @@ function mainMenu(person = personTemplate, people) {
     if (!person[0]) {
         alert("Could not find that individual.");
         // Restarts app() from the very beginning
-        return app(people);
+        return app(people);  
     }
-    else if (people.length > 1){
-        alert("Please try search again, mulitple results found. ")
-        return app(people)
-    }
-    else{
-        
-    }
+
     let displayOption = prompt(
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
@@ -74,12 +68,16 @@ function mainMenu(person = personTemplate, people) {
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
-            // alert(personInfo);
+            alert(personInfo);
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
             // HINT: Look for a people-collection stringifier utility function to help
-            let personFamily = findPersonFamily(person[0], people); 
+            let personFamily;  
+            personFamily = findCurrentSpouse(person[0], people);
+            personFamily = findParents(person[0], people);
+            personFamily = findSiblings(person[0], people);
+            personFamily = displayPeople(people[0]);
             alert(personFamily);
             break;
         case "descendants":
@@ -213,61 +211,72 @@ let personTemplate =
     "parents": [],
     "currentSpouse": 0,
 };
+// function findPersonFamily(people = []) {
+//     let personFamily;
+//         personFamily = findCurrentSpouse(people[0]);
+//         displayPeople(personFamily);
+//         personFamily = findParents(people[0]);
+//         displayPeople(personFamily);
+//         personFamily = findSiblings(people[0]);
+//         displayPeople(personFamily);
+//         alert(personFamily);
+// };
+
 
 function findCurrentSpouse(poi = personTemplate[0], people = []) {
     let spouse = people.find(function (person) {
         if (poi.currentSpouse === person.id) return true;
     });
-    alert(`POI ${poi.firstName} ${poi.lastName} 
-    Current Spouse: ${spouse.firstName} ${spouse.lastName}`);
+    alert(`Current Spouse: ${spouse.firstName} ${spouse.lastName}`);
 };
 
-function findParents(poi = personTemplate[0], people = []) {
-    let parents = people.filter(function (person) {
-        if (poi.parents.includes(person.id)) return true;
+function findParents(poi = personTemplate[0], people = []) {    
+        let parent;
+        parent = people.find(function(person) {
+        if (poi.parents.includes(person.id)) 
+            return true; 
     });
-    alert(`POI: ${poi.firstName} ${poi.lastName} 
-    Parents: ${parents.firstName} ${parents.lastName}`);
+    alert(`Parent: ${parent.firstName} ${parent.lastName}`);
 };
+
 function findSiblings(poi = personTemplate[0], people = []){
-    let sibling = people.filter(function(person){
-        if (poi.parents.includes(person.parents)) return true; 
+    let sibling = people.find(function(people){
+        if (poi.parents.includes([]) == people.parents.includes([])) return true; 
     });
-    alert(`Here is your sibling ${sibling}`)
-}
+    alert(`Siblings: ${sibling.firstName} ${sibling.lastName}`)
+};
 
 
-
-function searchByTraits(people) {
-        let resultTraits;
-        let searchTraits = promptFor("Please enter the traits you would like to search for gender/dob/height/weight/eyecolor/occupation ", chars).toLowerCase()
-        switch(searchTraits){
+function searchByTrait(people) {
+        let resultTrait;
+        let searchTrait = promptFor("Please enter the trait you would like to search for gender/dob/height/weight/eyecolor/occupation ", chars).toLowerCase()
+        switch(searchTrait){
             case 'gender':
-                resultTraits = searchByGender(people);
-                displayPeople(resultTraits);
+                resultTrait = searchByGender(people);
+                displayPeople(resultTrait);
             break;
             case 'dob':
-                resultTraits = searchByDOB(people);
-                displayPeople(resultTraits);
+                resultTrait = searchByDOB(people);
+                displayPeople(resultTrait);
             break;
             case 'height':
-                resultTraits = searchByHeight(people);
-                displayPeople(resultTraits);
+                resultTrait = searchByHeight(people);
+                displayPeople(resultTrait);
             break;
             case 'weight':
-                resultTraits = searchByWeight(people);
-                displayPeople(resultTraits);
+                resultTrait = searchByWeight(people);
+                displayPeople(resultTrait);
             break;
             case 'eyecolor':
-                resultTraits = searchByEyeColor(people);
-                displayPeople(resultTraits);
+                resultTrait = searchByEyeColor(people);
+                displayPeople(resultTrait);
             break;
             case 'occupation':
-                resultTraits = searchByOccupation(people);
-                displayPeople(resultTraits);
+                resultTrait = searchByOccupation(people);
+                displayPeople(resultTrait);
             break;
         }
-    return resultTraits
+    return resultTrait
 };
 
 function searchByGender(people) {
